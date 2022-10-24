@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="4.5298295mm"
+   height="5.999999mm"
+   viewBox="0 0 4.5298295 5.9999991"
+   version="1.1"
+   id="svg8"
+   inkscape:version="1.0.2 (e86c870879, 2021-01-15, custom)"
+   sodipodi:docname="inno_icon.svg">
+  <defs
+     id="defs2">
+    <style
+       type="text/css"
+       id="style833"><![CDATA[
+    .fil0 {fill:#FFFFFE}
+   ]]></style>
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="22.4"
+     inkscape:cx="7.5396413"
+     inkscape:cy="8.3183372"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     inkscape:document-rotation="0"
+     showgrid="false"
+     inkscape:window-width="1920"
+     inkscape:window-height="1001"
+     inkscape:window-x="-9"
+     inkscape:window-y="-9"
+     inkscape:window-maximized="1"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0" />
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Capa 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-125.33493,-115.47775)">
+    <g
+       style="clip-rule:evenodd;fill-rule:evenodd;image-rendering:optimizeQuality;shape-rendering:geometricPrecision;text-rendering:geometricPrecision"
+       id="g852"
+       transform="matrix(0.00935542,0,0,0.00935542,40.448459,10.477234)">
+      <g
+         id="Capa_x0020_1">
+        <metadata
+           id="CorelCorpID_0Corel-Layer" />
+        <path
+           id="path838"
+           class="fil0"
+           d="m 9252.72,11454.14 c -24.92,40.56 -29.3,52.77 -0.31,93.87 l 38.3,9.21 c 0.23,60.05 0.47,121.15 0.17,182.19 -0.29,59.8 -4.89,127.19 63.33,125.39 64.31,-1.69 60.53,-62.33 60.24,-117.46 -0.33,-63.81 -0.08,-127.69 -0.08,-191.51 55.1,0 111.81,8.58 114.42,-51.1 2.8,-63.72 -57.02,-58.36 -113.63,-58.36 0.29,-127.19 41.1,-75.15 109.4,-107.59 53.82,-25.56 40.78,-109.75 -29.62,-114.85 -59.23,-4.29 -128.74,23.9 -155.96,54.52 -53.45,60.15 -28.62,102.88 -54.74,167.35 z m 37.42,101.58 h 123.02 l 1.92,-109.28 h -124.99 z" />
+        <path
+           id="path854"
+           class="fil0"
+           d="m 9108.91,11446.38 c -68.94,29.68 -29.72,144.22 53.42,109.56 66.3,-27.63 28.86,-144.99 -53.42,-109.56 z" />
+      </g>
+    </g>
+  </g>
+</svg>
