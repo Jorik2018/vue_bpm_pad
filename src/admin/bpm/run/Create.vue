@@ -264,10 +264,10 @@ export default _.ui({
   methods: {
     buscarReniec(n, e) {
       var me = this;
-      axios.post("/api/reniec/", { dni: n }).then((r) => {
+      axios.post("https://web.regionancash.gob.pe/api/reniec/", { dni: n }).then((r) => {
         var p = r.data;
-        if (p.coResultado == "0000") {
-          p = p.datosPersona;
+        if (p.consultarResponse.return.coResultado == "0000") {
+          p = p.consultarResponse.return.datosPersona;
           e({
             fullName: p.apPrimer + " " + p.apSegundo + " " + p.prenombres,
             address: p.direccion + " - " + p.ubigeo,

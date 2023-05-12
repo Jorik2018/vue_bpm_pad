@@ -4,6 +4,7 @@ import IsobitUI from 'isobit-ui'
 import App from './App.vue'
 import Ionic from '@ionic/vue';
 import VForm from "./v-form.vue";
+import moment from 'moment';
 import '@ionic/core/css/ionic.bundle.css';
 Vue.config.productionTip = false;
 Vue.use(Router);
@@ -12,6 +13,15 @@ Vue.use(Ionic);
 Vue.config.ignoredElements = [/^ion-/,/^v-/];   // add this line
 Vue.config.productionTip = false;
 Vue.component("v-form", VForm);
+
+Vue.filter('formatDate', function(value) {
+    if (value) {
+		let dateUTC = moment.utc(String(value));
+        return moment(dateUTC).local().format('DD/MM/YYYY HH:mm:ss')
+		//return 'bb '+value;
+    }
+});
+
 const  router  =  new  Router({
 	mode: 'history',
 	routes: [
@@ -109,7 +119,9 @@ router.beforeEach((to, from, next) => {
 		if (to.path == '/register'||to.path == '/password') {
 			next();
 		}else {
+			// Change produccion
 			window.location =axios.defaults.baseURL+'/auth?destiny='+window.location.href;
+			// window.location ='http://web.regionancash.gob.pe/auth?destiny='+window.location.href;
 			// axios.defaults.baseURL+'/login?destiny='+window.location.href;
 			//next('/login');
 	}

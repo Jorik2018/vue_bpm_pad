@@ -11,7 +11,7 @@
                     <template v-slot:default="{row}">
                         <td class="center" header="Fecha" width="80">
                             <template v-if="row[0]">
-                                {{row[0].insertDate|date}}
+                                {{row[0].insertDate|date|formatDate}}
                             </template>
                         </td>
                         <td header="Actividad">
@@ -50,7 +50,7 @@
                         <td header="Dependencia">{{row[3]}} <div class="bold">{{row[5]}}</div></td> 
                         <td class="center" header="Atención" width="80">
                             <template v-if="row[0]">
-                                {{row[0].attentionDate|date}}
+                                {{row[0].attentionDate|date|formatDate}}
                             </template>
                         </td>
                         <td header="Usuario">{{row[2]}}</td>
@@ -67,6 +67,9 @@
             <v-button value="Descargar" icon="fa-download" class="blue" @click.prevent="download"></v-button>
             <v-button value="Atender" v-if="manageable" style="margin-left:10px;" icon="fa-paper-plane" 
                 class="blue" @click.prevent="$router.replace('/admin/bpm/run/'+id+'/edit')"></v-button>
+            <!-- <v-button value="Editar" class="vv red" style="margin-left:10px;" 
+            icon="fa-pen" :disabled="!(selected&&selected[0].attentionDate)"  
+            @click.prevent="open('/admin/bpm/run/dispatch/'+selected[0].id)"></v-button> -->
             <v-button value="Editar" v-show="perms.pad_admin" class="vv red" style="margin-left:10px;" 
             icon="fa-pen" :disabled="!(selected&&selected[0].attentionDate)"  
             @click.prevent="open('/admin/bpm/run/dispatch/'+selected[0].id)"></v-button>
@@ -130,9 +133,10 @@
                                         if(name=='dni_infractor'){
                                             people.push({code:s[1]});
                                         }else if(name=='domicilio_infractor'||name=='caso_infractor'){
-                                            people[people.length-1][name]=s[1];
-                                        }else
+                                            // people[(people.length)-1][name]=s[1];
+                                        }else{
                                             o.push({type:before,name:name,label:after,value:s[1]});
+                                        }
                                     });
                                     if(people.length)
                                         o.splice(2, 0,{type:'X',name:'offenders',label:'Infractores',value:people});
