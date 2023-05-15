@@ -28,6 +28,7 @@
     "core-js": "^3.6.5",
     "dayjs": "^1.11.7",
     "isobit-ui": "^0.1.94",
+    "moment-timezone": "^0.5.43",
     "ol": "^6.6.1",
     "vue": "2.6.11",
     "vue-router": "^3.4.3"

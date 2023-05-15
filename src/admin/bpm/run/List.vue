@@ -118,7 +118,7 @@
               <input v-model="filters.province" />
             </v-filter>
             <template v-if="row.dispatch">
-              {{ row.dispatch.insertDate | date | formatDate }}
+              {{ row.dispatch.insertDate | formatDate}}
             </template>
           </td>
         </template>

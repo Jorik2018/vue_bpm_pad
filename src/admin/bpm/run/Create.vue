@@ -97,7 +97,7 @@
             <template v-else>
               <label>{{ item.label }}:</label>
               <div v-if="item.type == 'F'">
-                <input
+                <!-- <input
                   style="
                     color: black;
                     padding: 5px !important;
@@ -127,7 +127,7 @@
                     Descargar <i class="fa fa-download"></i
                   ></a>
                   <v-uploader icon="fa-upload" @input="item.value = $event" />
-                </div>
+                </div> -->
               </div>
               <v-radio-group
                 required="required"
