@@ -86,11 +86,25 @@ const router = new Router({
 var axios = window.axios;
 var url = new URL(window.location);
 var location = window.location;
-var token = url.searchParams.get("token");
+var code = url.searchParams.get("code");
 axios.defaults.baseURL = process.env.VUE_APP_BASE_URL;
 (async function () {
-	if (token) {
-		localStorage.setItem('token', token);
+	if (code) {
+		let response
+		try {
+			response = await axios.post(process.env.VUE_APP_BASE_URL +
+				'/api/auth/token', code,{headers: {'Content-Type': 'text/plain'},
+				});
+			const token = response.data.access_token;
+			localStorage.setItem('token', token);
+			axios.defaults.headers.common = {
+			Authorization: `Bearer ${token}`
+			};
+			//next();
+		} catch (error) {
+			response = null;
+		}
+		/*localStorage.setItem('token', token);
 		var session = { token: token, connected: true, perms: [] };
 		axios.defaults.headers.common = { 'Authorization': `Bearer ` + token };
 		const aa = await axios.get('/api/bpm/perms');
@@ -100,7 +114,7 @@ axios.defaults.baseURL = process.env.VUE_APP_BASE_URL;
 		});
 		session.perms = perm;
 		localStorage.setItem('session', JSON.stringify(session));
-		window.location = location.protocol + '//' + location.host + location.pathname
+		window.location = location.protocol + '//' + location.host + location.pathname*/
 	}
 
 	router.beforeEach((to, from, next) => {
@@ -123,10 +137,7 @@ axios.defaults.baseURL = process.env.VUE_APP_BASE_URL;
 				next();
 			} else {
 				// Change produccion
-				window.location = axios.defaults.baseURL + '/auth?destiny=' + window.location.href;
-				// window.location = 'http://web.regionancash.gob.pe/auth?destiny=' + window.location.href;
-				// axios.defaults.baseURL+'/login?destiny='+window.location.href;
-				//next('/login');
+				location.href=`${process.env.VUE_APP_OAUTH_URL}/authorize?response_type=code&client_id=${process.env.VUE_APP_OAUTH_CLIENT_ID}&scope=profile`;
 			}
 		} else if (to.path == '/') {
 			next('/admin');
