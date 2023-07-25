@@ -89,6 +89,7 @@ var location = window.location;
 var code = url.searchParams.get("code");
 axios.defaults.baseURL = process.env.VUE_APP_BASE_URL;
 (async function () {
+	alert(code);
 	if (code) {
 		let response
 		try {
@@ -101,7 +102,8 @@ axios.defaults.baseURL = process.env.VUE_APP_BASE_URL;
 			Authorization: `Bearer ${token}`
 			};
 			//next();
-		} catch (error) {
+		} catch (e) {
+			console.error(e);
 			response = null;
 		}
 		/*localStorage.setItem('token', token);
