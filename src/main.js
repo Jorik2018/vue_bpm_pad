@@ -15,6 +15,23 @@ Vue.config.ignoredElements = [/^ion-/, /^v-/];   // add this line
 Vue.config.productionTip = false;
 Vue.component("v-form", VForm);
 
+function removeParamFromUrl(url, paramToRemove) {
+	const [baseUrl, queryString] = url.split('?');
+	if (!queryString) {
+		return url;
+	}else{
+		const params = new URLSearchParams(queryString);
+		params.delete(paramToRemove);
+		const newQueryString = params.toString();
+		return newQueryString ? `${baseUrl}?${newQueryString}` : baseUrl;
+	}
+}
+  
+  
+  
+  
+  
+  
 Vue.filter('formatDate', function (value) {
 	if (value) {
 		let dateUTC = moment.utc(String(value), 'YYYY-MM-DDTHH:mm:ssZ');
@@ -101,8 +118,9 @@ axios.defaults.baseURL = process.env.VUE_APP_BASE_URL;
 			},{});
 			localStorage.setItem('session',JSON.stringify(session));
 			axios.defaults.headers.common = {
-			Authorization: `Bearer ${session.token}`
+				Authorization: `Bearer ${session.token}`
 			};
+			window.location.replace(removeParamFromUrl(url,'code'));
 			//next();
 		} catch (e) {
 			console.error(e);
