@@ -97,6 +97,7 @@ axios.defaults.baseURL = process.env.VUE_APP_BASE_URL;
 				'/api/auth/token', code,{headers: {'Content-Type': 'text/plain'},
 				});
 			const token = response.data.access_token;
+			alert(token);
 			localStorage.setItem('token', token);
 			axios.defaults.headers.common = {
 			Authorization: `Bearer ${token}`
