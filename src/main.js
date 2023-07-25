@@ -101,7 +101,7 @@ axios.defaults.baseURL = process.env.VUE_APP_BASE_URL;
 			},{});
 			localStorage.setItem('session', session);
 			axios.defaults.headers.common = {
-			Authorization: `Bearer ${token}`
+			Authorization: `Bearer ${session.token}`
 			};
 			//next();
 		} catch (e) {
