@@ -95,10 +95,11 @@ axios.defaults.baseURL = process.env.VUE_APP_BASE_URL;
 			response = await axios.post(process.env.VUE_APP_BASE_URL +
 				'/api/auth/token', code,{headers: {'Content-Type': 'text/plain'},
 				});
-			console.log(response.data);
-			const token = response.data.token;
-			alert(JSON.stringify(response.data));
-			localStorage.setItem('token', token);
+			const session = response.data;
+			session.perms=session.perms.reduce((a,current)=>{
+				a[current]=1;return a;
+			},{})
+			localStorage.setItem('session', session);
 			axios.defaults.headers.common = {
 			Authorization: `Bearer ${token}`
 			};
