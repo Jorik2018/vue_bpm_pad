@@ -99,7 +99,7 @@ axios.defaults.baseURL = process.env.VUE_APP_BASE_URL;
 			session.perms=session.perms.reduce((a,current)=>{
 				a[current]=1;return a;
 			},{});
-			localStorage.setItem('session', session);
+			localStorage.setItem('session',JSON.stringify(session));
 			axios.defaults.headers.common = {
 			Authorization: `Bearer ${session.token}`
 			};
