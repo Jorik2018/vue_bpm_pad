@@ -96,7 +96,7 @@ axios.defaults.baseURL = process.env.VUE_APP_BASE_URL;
 			response = await axios.post(process.env.VUE_APP_BASE_URL +
 				'/api/auth/token', code,{headers: {'Content-Type': 'text/plain'},
 				});
-			console.log(response);
+			console.log(response.data);
 			const token = response.data.data.access_token;
 			alert(token);
 			localStorage.setItem('token', token);
