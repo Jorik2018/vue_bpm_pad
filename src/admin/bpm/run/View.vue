@@ -74,17 +74,33 @@
         </v-table>
       </v-fieldset>
     </div>
-    <center style="margin-bottom:10px;"> 
-            <v-button value="Descargar" icon="fa-download" class="blue" @click.prevent="download"></v-button>
-            <v-button value="Atender" v-if="manageable" style="margin-left:10px;" icon="fa-paper-plane" 
-                class="blue" @click.prevent="$router.replace('/admin/bpm/run/'+id+'/edit')"></v-button>
-            <!-- <v-button value="Editar" class="vv red" style="margin-left:10px;" 
+    <center style="margin-bottom: 10px">
+      <v-button
+        value="Descargar"
+        icon="fa-download"
+        class="blue"
+        @click.prevent="download"
+      ></v-button>
+      <v-button
+        value="Atender"
+        v-if="manageable"
+        style="margin-left: 10px"
+        icon="fa-paper-plane"
+        class="blue"
+        @click.prevent="$router.replace('/admin/bpm/run/' + id + '/edit')"
+      ></v-button>
+      <v-button
+        value="Editar"
+        class="vv red"
+        style="margin-left: 10px"
+        icon="fa-pen"
+        :disabled="!(selected && selected[0].attentionDate)"
+        @click.prevent="open('/admin/bpm/run/dispatch/' + selected[0].id)"
+      ></v-button>
+      <!-- <v-button value="Editar" v-show="perms.pad_admin" class="vv red" style="margin-left:10px;" 
             icon="fa-pen" :disabled="!(selected&&selected[0].attentionDate)"  
             @click.prevent="open('/admin/bpm/run/dispatch/'+selected[0].id)"></v-button> -->
-            <v-button value="Editar" v-show="perms.pad_admin" class="vv red" style="margin-left:10px;" 
-            icon="fa-pen" :disabled="!(selected&&selected[0].attentionDate)"  
-            @click.prevent="open('/admin/bpm/run/dispatch/'+selected[0].id)"></v-button>
-        </center> 
+    </center>
   </v-form>
 </template>
 <script>

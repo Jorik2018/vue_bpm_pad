@@ -18,7 +18,6 @@
         </div>
       </v-fieldset>
 
-      {{ o.activity }}
       <div v-if="o.activity.fields && o.activity.fields.length" class="v-form">
         <template v-for="(item, i) in o.activity.fields">
           <div :key="'div-' + i">
