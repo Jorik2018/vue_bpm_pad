@@ -17,6 +17,8 @@
           {{ o.activity.description }}
         </div>
       </v-fieldset>
+
+      {{ o.activity }}
       <div v-if="o.activity.fields && o.activity.fields.length" class="v-form">
         <template v-for="(item, i) in o.activity.fields">
           <div :key="'div-' + i">
@@ -27,14 +29,14 @@
                   <input v-model="o.ext.value" />
                   <div class="right" style="margin-top: 10px">
                     <v-button
-                        :disabled="!(o.ext.value&&o.ext.value.length>6)"
+                      :disabled="!(o.ext.value && o.ext.value.length > 6)"
                       icon="fa-search"
                       @click="
                         buscarReniec(o.ext.value, (e) => {
                           addPeople({
                             code: o.ext.value,
                             fullName: e.fullName,
-                            address: e.address
+                            address: e.address,
                           });
                           delete o.ext.value;
                         })
@@ -44,14 +46,19 @@
                   </div>
                   <label>Nombre Completo:</label>
                   <input v-model="o.ext.fullName" />
+
+                  <label>Cargo Desempeñado:</label>
+                  <input v-model="o.ext.cargo" />
+
                   <div class="right" style="margin-top: 10px">
                     <v-button
-                    :disabled="!o.ext.fullName"
+                      :disabled="!o.ext.fullName || !o.ext.cargo"
                       icon="fa-search"
                       @click="
                         addPeople({
                           code: o.ext.value,
                           fullName: o.ext.fullName,
+                          cargo: o.ext.cargo,
                         });
                         o.ext.value = null;
                         o.ext.fullName = null;
@@ -60,7 +67,7 @@
                     />
                   </div>
                   <table
-                    v-if="o.peoples.filter(e=>!e.delete).length"
+                    v-if="o.peoples.filter((e) => !e.delete).length"
                     class="v-table"
                     style="margin-top: 10px"
                     width="100%"
@@ -69,22 +76,37 @@
                       <tr>
                         <th width="80" class="center">DNI</th>
                         <th>Nombre Completo</th>
+                        <th>Cargo Desempeñado</th>
                       </tr>
                     </thead>
-                    <template v-for="(people, k) in o.peoples.filter(e=>!e.delete)">
+                    <template
+                      v-for="(people, k) in o.peoples.filter((e) => !e.delete)"
+                    >
                       <tr :key="k">
                         <td class="center">{{ people.code }}</td>
-                        <td>{{ people.fullName }}{{ people.delete }}
-                            <div style="float:right;margin:5px;display:inline;" @click="people.delete=1">
+                        <td>
+                          {{ people.fullName }}{{ people.delete }}
+                          <div
+                            style="float: right; margin: 5px; display: inline"
+                            @click="people.delete = 1"
+                          >
                             <i class="fa fa-times"></i>
-                            </div>
+                          </div>
+                        </td>
+                        <td>
+                          {{ people.cargo }}{{ people.delete }}
+                          <div
+                            style="float: right; margin: 5px; display: inline"
+                            @click="people.delete = 1"
+                          >
+                            <i class="fa fa-times"></i>
+                          </div>
                         </td>
                       </tr>
                       <tr :key="k + 'address'">
                         <td colspan="2">
                           <v-textarea
                             v-model="people.address"
-                            required="required"
                             maxlength="200"
                           />
                         </td>
@@ -176,7 +198,6 @@
               <template
                 v-else-if="item.type == 'C' && item.name == 'delegatedUserId'"
               >
-             
                 <v-select v-model="item.value" required="required">
                   <option>--Seleccionar Opcion--</option>
                   <v-options
@@ -264,29 +285,32 @@ export default _.ui({
   methods: {
     buscarReniec(n, e) {
       var me = this;
-      axios.post("https://web.regionancash.gob.pe/api/reniec/", { dni: n }).then((r) => {
-        var p = r.data;
-        if (p.consultarResponse.return.coResultado == "0000") {
-          p = p.consultarResponse.return.datosPersona;
-          e({
-            fullName: p.apPrimer + " " + p.apSegundo + " " + p.prenombres,
-            address: p.direccion + " - " + p.ubigeo,
-            delete:null
-          });
-        } else {
-          me.MsgBox(p.deResultado);
-        }
-      });
+      axios
+        .post("https://web.regionancash.gob.pe/api/reniec/", { dni: n })
+        .then((r) => {
+          var p = r.data;
+          if (p.consultarResponse.return.coResultado == "0000") {
+            p = p.consultarResponse.return.datosPersona;
+            e({
+              fullName: p.apPrimer + " " + p.apSegundo + " " + p.prenombres,
+              address: p.direccion + " - " + p.ubigeo,
+              delete: null,
+            });
+          } else {
+            me.MsgBox(p.deResultado);
+          }
+        });
     },
     addPeople(p) {
       var me = this,
         peoples = me.o.peoples;
-      if (peoples.filter((e) => e.code == p.code).length)
-        me.MsgBox(p.fullName + " ya esta incluido en el expediente!");
-      else peoples.push(p);
+      peoples.push(p);
+      // if (peoples.filter((e) => e.code == p.code).length)
+      //   me.MsgBox(p.fullName + " ya esta incluido en el expediente!");
+      // else peoples.push(p);
     },
     process(o) {
-        console.log(o);
+      console.log(o);
       return o;
     },
     log(o) {
@@ -308,7 +332,11 @@ export default _.ui({
             }
             if (e.name == "dni_infractor") {
               if (e.dispatchFieldId)
-                peoples.push({ id: e.dispatchFieldId, code: e.value ,delete:null});
+                peoples.push({
+                  id: e.dispatchFieldId,
+                  code: e.value,
+                  delete: null,
+                });
             } else if (e.name == "caso_infractor") {
               if (e.dispatchFieldId) {
                 peoples[i].nid = e.dispatchFieldId;
@@ -353,7 +381,11 @@ export default _.ui({
         axios.get("/api/bpm/prepare/1").then(function (response) {
           var o = response.data;
           o.activity.fields.forEach((e) => {
-            e.value = "";
+            if (e.id === 18) {
+              e.value = "2023";
+            } else {
+              e.value = "";
+            }
           });
           o.ext = {};
           o.peoples = [];

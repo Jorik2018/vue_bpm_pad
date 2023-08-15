@@ -19,19 +19,19 @@ function removeParamFromUrl(url, paramToRemove) {
 	const [baseUrl, queryString] = url.split('?');
 	if (!queryString) {
 		return url;
-	}else{
+	} else {
 		const params = new URLSearchParams(queryString);
 		params.delete(paramToRemove);
 		const newQueryString = params.toString();
 		return newQueryString ? `${baseUrl}?${newQueryString}` : baseUrl;
 	}
 }
-  
-  
-  
-  
-  
-  
+
+
+
+
+
+
 Vue.filter('formatDate', function (value) {
 	if (value) {
 		let dateUTC = moment.utc(String(value), 'YYYY-MM-DDTHH:mm:ssZ');
@@ -110,17 +110,18 @@ axios.defaults.baseURL = process.env.VUE_APP_BASE_URL;
 		let response
 		try {
 			response = await axios.post(process.env.VUE_APP_BASE_URL +
-				'/api/auth/token', code,{headers: {'Content-Type': 'text/plain'},
-				});
+				'/api/auth/token', code, {
+					headers: { 'Content-Type': 'text/plain' },
+			});
 			const session = response.data;
-			session.perms=session.perms.reduce((a,current)=>{
-				a[current]=1;return a;
-			},{});
-			localStorage.setItem('session',JSON.stringify(session));
+			session.perms = session.perms.reduce((a, current) => {
+				a[current] = 1; return a;
+			}, {});
+			localStorage.setItem('session', JSON.stringify(session));
 			axios.defaults.headers.common = {
 				Authorization: `Bearer ${session.token}`
 			};
-			window.location.replace(removeParamFromUrl(url,'code'));
+			window.location.replace(removeParamFromUrl(url, 'code'));
 			//next();
 		} catch (e) {
 			console.error(e);
@@ -159,7 +160,7 @@ axios.defaults.baseURL = process.env.VUE_APP_BASE_URL;
 				next();
 			} else {
 				// Change produccion
-				location.href=`${process.env.VUE_APP_OAUTH_URL}/authorize?response_type=code&client_id=${process.env.VUE_APP_OAUTH_CLIENT_ID}&scope=profile`;
+				location.href = `${process.env.VUE_APP_OAUTH_URL}/authorize?response_type=code&client_id=${process.env.VUE_APP_OAUTH_CLIENT_ID}&scope=profile`;
 			}
 		} else if (to.path == '/') {
 			next('/admin');
