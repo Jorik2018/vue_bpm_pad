@@ -47,17 +47,17 @@
                   <input v-model="o.ext.fullName" />
 
                   <label>Cargo Desempeñado:</label>
-                  <input v-model="o.ext.cargo" />
+                  <input v-model="o.ext.position" />
 
                   <div class="right" style="margin-top: 10px">
                     <v-button
-                      :disabled="!o.ext.fullName || !o.ext.cargo"
+                      :disabled="!o.ext.fullName || !o.ext.position"
                       icon="fa-search"
                       @click="
                         addPeople({
                           code: o.ext.value,
                           fullName: o.ext.fullName,
-                          cargo: o.ext.cargo,
+                          position: o.ext.position,
                         });
                         o.ext.value = null;
                         o.ext.fullName = null;
@@ -93,7 +93,7 @@
                           </div>
                         </td>
                         <td>
-                          {{ people.cargo }}{{ people.delete }}
+                          {{ people.position }}{{ people.delete }}
                           <div
                             style="float: right; margin: 5px; display: inline"
                             @click="people.delete = 1"
