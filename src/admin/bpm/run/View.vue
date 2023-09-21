@@ -166,7 +166,7 @@ export default _.ui({
                   name == "caso_infractor" ||
                   name == "caso_infractor_position"
                 ) {
-                  // people[(people.length)-1][name]=s[1];
+                  people[(people.length)-1][name]=value;
                 } else {
                   o.push({
                     type,
