@@ -136,6 +136,7 @@ export default window.ui({
           if (e.name == "offenders")
             e.value.forEach((e, i) => {
               offender.push(i + 1 + ". " + e.caso_infractor+" "+e.caso_infractor_position);
+              o.caso_infractor_position = e.caso_infractor_position;
             });
         });
       } else
