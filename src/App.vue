@@ -146,13 +146,6 @@ export default window.ui({
           }
         });
       if (offender.length) o.offender = offender.join("\n");
-      var caso_infractor_position = o.ext
-        .split("|")
-        .find((e) => e.startsWith("caso_infractor_position="));
-      if (caso_infractor_position) {
-        o.caso_infractor_position = caso_infractor_position.split("=")[1];
-      }
-
       fo.append(
         "file",
         new Blob([JSON.stringify([o])], { type: "text/plain" }),
