@@ -151,8 +151,14 @@ export default _.ui({
               var o = [];
               var people = [];
               e[4].forEach((e) => {
+                console.log(e);
                 var [key, value] = e.split("=");
+                console.log(key);
+                console.log(value);
                 var [type,name,label] = key.split(".");
+                console.log(type);
+                console.log(name);
+                console.log(label);
                 if (name == "dni_infractor") {
                   people.push({ code: value });
                 } else if (
