@@ -187,12 +187,9 @@ export default _.ui({
             }
           });
           me.o.ext.details = d;
+          console.log(d);
           me.k++;
           //me.loadTables();
-        });
-        axios.get("/api/bpm/test").then(function (response) {
-          var d = response.data;
-          console.log(d);
         });
       }
     },
