@@ -131,12 +131,13 @@ export default window.ui({
       o.number = 1 * o.caso_numero;
       o.company = o.institucion;
       var offender = [];
+      var position = [];
       if (o.ext.details) {
         o.ext.details[0][4].forEach((e) => {
           if (e.name == "offenders")
             e.value.forEach((e, i) => {
               offender.push(i + 1 + ". " + e.caso_infractor+" "+e.caso_infractor_position);
-              o.caso_infractor_position = e.caso_infractor_position;
+              position.push(e.caso_infractor_position);
             });
         });
       } else
@@ -147,6 +148,7 @@ export default window.ui({
           }
         });
       if (offender.length) o.offender = offender.join("\n");
+      if (position.length) o.caso_infractor_position = position.join(", ");
       fo.append(
         "file",
         new Blob([JSON.stringify([o])], { type: "text/plain" }),
