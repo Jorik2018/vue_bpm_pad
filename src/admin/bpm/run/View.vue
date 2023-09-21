@@ -44,7 +44,7 @@
                   </div>
                   <ol v-else-if="item.type == 'X'">
                     <li v-for="(v, k) in item.value" :key="k">
-                      <b>{{ v.code }}: {{ v.caso_infractor }}</b
+                      <b>{{ v.code }}: {{ v.caso_infractor }} {{ v.caso_infractor_position }}</b
                       >, {{ v.domicilio_infractor }}
                     </li>
                   </ol>
@@ -144,32 +144,29 @@ export default _.ui({
         id = me.id;
       if (Number(id)) {
         me.filters.masterId = me.id;
-        axios.get("/api/bpm/details/" + id).then(function (response) {
+        axios.get("/api/bpm/details/" + id).then(response => {
           var d = response.data;
           d.forEach((e) => {
             if (e[4]) {
               var o = [];
               var people = [];
               e[4].forEach((e) => {
-                var s = e.split("=");
-                var after = s[0].slice(s[0].indexOf(".") + 1);
-                var name = after.slice(0, after.indexOf("."));
-
-                after = after.slice(after.indexOf(".") + 1);
-                const before = s[0].slice(0, s[0].indexOf("."));
+                var [key, value] = e.split("=");
+                var [type,name,label] = key.split(".");
                 if (name == "dni_infractor") {
-                  people.push({ code: s[1] });
+                  people.push({ code: value });
                 } else if (
                   name == "domicilio_infractor" ||
-                  name == "caso_infractor"
+                  name == "caso_infractor" ||
+                  name == "caso_infractor_position"
                 ) {
                   // people[(people.length)-1][name]=s[1];
                 } else {
                   o.push({
-                    type: before,
-                    name: name,
-                    label: after,
-                    value: s[1],
+                    type,
+                    name,
+                    label,
+                    value,
                   });
                 }
               });
