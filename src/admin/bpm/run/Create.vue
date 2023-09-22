@@ -353,9 +353,9 @@ export default _.ui({
                 peoples[i - peoples.length].aid = e.dispatchFieldId;
                 peoples[i - peoples.length].address = e.value;
               }
-
               i++;
-            } else fields.push(e);
+            } else 
+              fields.push(e);
           });
           o.ext = {};
           o.peoples = peoples;
