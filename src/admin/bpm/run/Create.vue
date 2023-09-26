@@ -330,30 +330,7 @@ export default _.ui({
               e.value = new Date(+year, +month - 1, +day).getTime();
             }
             if (e.name == "dni_infractor") {
-              if (e.dispatchFieldId)
-                peoples.push({
-                  id: e.dispatchFieldId,
-                  code: e.value,
-                  delete: null,
-                });
-            } else if (e.name == "caso_infractor") {
-              if (e.dispatchFieldId) {
-                peoples[i].nid = e.dispatchFieldId;
-                peoples[i].fullName = e.value;
-              }
-
-              if (!added) {
-                delete e.value;
-                fields.push(e);
-                added = 1;
-              }
-              i++;
-            } else if (e.name == "domicilio_infractor") {
-              if (e.dispatchFieldId) {
-                peoples[i - peoples.length].aid = e.dispatchFieldId;
-                peoples[i - peoples.length].address = e.value;
-              }
-              i++;
+                peoples=(!(e.value instanceof string)&&e.value)||[];
             } else 
               fields.push(e);
           });
