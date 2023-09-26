@@ -321,9 +321,7 @@ export default _.ui({
         axios.get("/api/bpm/dispatch/" + me.dispatch).then(function (response) {
           var o = response.data,
             peoples = [],
-            fields = [],
-            added = false,
-            i = 0;
+            fields = [];
           o.activity.fields.forEach((e) => {
             if (e.type == "D" && e.value) {
               const [year, month, day] = e.value.split("-");
