@@ -328,7 +328,7 @@ export default _.ui({
               e.value = new Date(+year, +month - 1, +day).getTime();
             }
             if (e.name == "dni_infractor") {
-                peoples=(!(e.value instanceof string)&&e.value)||[];
+                peoples=(typeof e.value !== 'string'&&e.value)||[];
             } else 
               fields.push(e);
           });
