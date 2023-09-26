@@ -323,6 +323,7 @@ export default _.ui({
             peoples = [],
             fields = [];
           o.activity.fields.forEach((e) => {
+            console.log(e);
             if (e.type == "D" && e.value) {
               const [year, month, day] = e.value.split("-");
               e.value = new Date(+year, +month - 1, +day).getTime();
