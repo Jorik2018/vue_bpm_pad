@@ -221,6 +221,7 @@
         <label>Comentarios:</label>
         <v-textarea v-model="o.dispatch.comments" />
       </div>
+      {{ o }}
     </div>
     <center>
       <v-button
