@@ -85,19 +85,12 @@
                         <td class="center">{{ people.code }}</td>
                         <td>
                           {{ people.fullName}}
-                          <div
-                            style="float: right; margin: 5px; display: inline"
-                            @click="people.delete = 1"
-                          >
-                            <i class="fa fa-times"></i>
-                          </div>
                         </td>
                         <td>
                           {{people.position}}
                           <div
                             style="float: right; margin: 5px; display: inline"
-                            @click="people.delete = 1"
-                          >
+                            @click="people.canceled = 1"
                             <i class="fa fa-times"></i>
                           </div>
                         </td>
