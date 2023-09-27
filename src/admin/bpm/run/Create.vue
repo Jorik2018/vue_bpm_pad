@@ -90,7 +90,7 @@
                           {{people.position}}
                           <div
                             style="float: right; margin: 5px; display: inline"
-                            @click="people.canceled = 1"
+                            @click="people.canceled = 1">
                             <i class="fa fa-times"></i>
                           </div>
                         </td>
