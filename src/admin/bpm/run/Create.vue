@@ -84,7 +84,7 @@
                       <tr :key="k">
                         <td class="center">{{ people.code }}</td>
                         <td>
-                          {{ people.fullName }}{{ people.delete }}
+                          {{ people.fullName}}
                           <div
                             style="float: right; margin: 5px; display: inline"
                             @click="people.delete = 1"
@@ -93,7 +93,7 @@
                           </div>
                         </td>
                         <td>
-                          {{ people.position }}{{ people.delete }}
+                          {{people.position}}
                           <div
                             style="float: right; margin: 5px; display: inline"
                             @click="people.delete = 1"
@@ -103,7 +103,7 @@
                         </td>
                       </tr>
                       <tr :key="k + 'address'">
-                        <td colspan="2">
+                        <td colspan="3">
                           <v-textarea
                             v-model="people.address"
                             maxlength="200"
@@ -221,7 +221,6 @@
         <label>Comentarios:</label>
         <v-textarea v-model="o.dispatch.comments" />
       </div>
-      {{ o }}
     </div>
     <center>
       <v-button
