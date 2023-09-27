@@ -97,9 +97,6 @@
         :disabled="!(selected && selected[0].attentionDate)"
         @click.prevent="open('/admin/bpm/run/dispatch/' + selected[0].id)"
       ></v-button>
-      <!-- <v-button value="Editar" v-show="perms.pad_admin" class="vv red" style="margin-left:10px;" 
-            icon="fa-pen" :disabled="!(selected&&selected[0].attentionDate)"  
-            @click.prevent="open('/admin/bpm/run/dispatch/'+selected[0].id)"></v-button> -->
     </center>
   </v-form>
 </template>
@@ -177,9 +174,7 @@ export default _.ui({
             }
           });
           me.o.ext.details = d;
-          console.log(d);
           me.k++;
-          //me.loadTables();
         });
       }
     },

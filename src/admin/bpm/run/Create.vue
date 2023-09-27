@@ -61,6 +61,7 @@
                         });
                         o.ext.value = null;
                         o.ext.fullName = null;
+                        o.ext.position = null;
                       "
                       value="Agregar Persona"
                     />
@@ -81,7 +82,7 @@
                     <template
                       v-for="(people, k) in o.peoples.filter((e) => !e.canceled)"
                     >
-                      <tr :key="k">
+                      <tr :key="k" :title="people.canceled">
                         <td class="center">{{ people.code }}</td>
                         <td>
                           {{ people.fullName}} {{  people.canceled}}
@@ -286,7 +287,7 @@ export default _.ui({
             e({
               fullName: p.apPrimer + " " + p.apSegundo + " " + p.prenombres,
               address: p.direccion + " - " + p.ubigeo,
-              delete: null,
+              canceled: false,
             });
           } else {
             me.MsgBox(p.deResultado);
@@ -294,12 +295,8 @@ export default _.ui({
         });
     },
     addPeople(p) {
-      var me = this,
-        peoples = me.o.peoples;
+      var me = this,peoples = me.o.peoples;
       peoples.push(p);
-      // if (peoples.filter((e) => e.code == p.code).length)
-      //   me.MsgBox(p.fullName + " ya esta incluido en el expediente!");
-      // else peoples.push(p);
     },
     process(o) {
       console.log(o);
@@ -311,10 +308,8 @@ export default _.ui({
     changeRoute() {
       var me = this;
       if (me.dispatch) {
-        axios.get("/api/bpm/dispatch/" + me.dispatch).then(function (response) {
-          var o = response.data,
-            peoples = [],
-            fields = [];
+        axios.get("/api/bpm/dispatch/" + me.dispatch).then(response => {
+          let o = response.data, peoples = [], fields = [];
           o.activity.fields.forEach((e) => {
             console.log(e);
             if (e.type == "D" && e.value) {
@@ -328,8 +323,6 @@ export default _.ui({
           });
           o.ext = {};
           o.peoples = peoples;
-          console.log(peoples);
-          console.log(fields);
           o.activity.fields = fields;
           me.o = o;
           me.key2++;
