@@ -79,12 +79,12 @@
                       </tr>
                     </thead>
                     <template
-                      v-for="(people, k) in o.peoples.filter((e) => !e.delete)"
+                      v-for="(people, k) in o.peoples.filter((e) => !e.canceled)"
                     >
                       <tr :key="k">
                         <td class="center">{{ people.code }}</td>
                         <td>
-                          {{ people.fullName}}
+                          {{ people.fullName}} {{  people.canceled}}
                         </td>
                         <td>
                           {{people.position}}
