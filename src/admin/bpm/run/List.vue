@@ -79,6 +79,7 @@
               <input v-model="filters.offender" />
             </v-filter>
             {{ row.caso_infractor }}
+            {{ row.offenders }}
             <br />
             <p style="text-transform: uppercase">
               {{ row.caso_infractor_position }}
