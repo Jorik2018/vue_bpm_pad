@@ -146,22 +146,14 @@ export default _.ui({
           d.forEach((e) => {
             if (e[4]) {
               const o = [];
-              const people = [];
               e[4].forEach((e) => {
                 const {type,name,label,value} = e;
                 if (name == "dni_infractor") {
-                  people=value;
+                  o.push({'x', 'offenders', 'Infractores', value});
                 } else {
                   o.push({type, name, label, value});
                 }
               });
-              if (people.length)
-                o.splice(2, 0, {
-                  type: "X",
-                  name: "offenders",
-                  label: "Infractores",
-                  value: people,
-                });
               e[4] = o;
             }
           });
