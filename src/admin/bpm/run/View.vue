@@ -149,7 +149,7 @@ export default _.ui({
               e[4].forEach((e) => {
                 const {type,name,label,value} = e;
                 if (name == "dni_infractor") {
-                  o.push({'x', 'offenders', 'Infractores', value});
+                  o.push({type:'x', name:'offenders',label: 'Infractores', value});
                 } else {
                   o.push({type, name, label, value});
                 }
