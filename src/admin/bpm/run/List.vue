@@ -177,13 +177,20 @@ export default _.ui({
     tableLoaded(e) {
       e.target.data.forEach((e) => {
         if (e.activity) this.app.tt(e.activity);
-        if (e.ext)
-          e.ext.split("|,").forEach((e2) => {
-            e2 = e2.split("=");
-            if (e[e2[0]]) {
-              e[e2[0]] += ", " + e2[1];
-            } else e[e2[0]] = e2[1];
+        if (e.ext){
+          Object.keys(e.ext).forEach((key) => {
+            e[key]=e.ext[key];
           });
+          if(e.ext.all){
+            const w=e.ext.all;
+            w.split("|,").forEach((e2) => {
+              e2 = e2.split("=");
+              if (e[e2[0]]) {
+                e[e2[0]] += ", " + e2[1];
+              } else e[e2[0]] = e2[1];
+            });
+          }
+        }
       });
       this.k++;
     },
