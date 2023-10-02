@@ -44,8 +44,8 @@
                   </div>
                   <ol v-else-if="item.type == 'X'">
                     <li v-for="(v, k) in item.value" :key="k">
-                      <b>{{ v.code }}: {{ v.caso_infractor }} {{ v.caso_infractor_position }}</b
-                      >, {{ v.domicilio_infractor }}
+                      <b>{{ v.code }}: {{ v.fullName }} {{ v.position }}</b
+                      >, {{ v.address }}
                     </li>
                   </ol>
                   <div v-else>
