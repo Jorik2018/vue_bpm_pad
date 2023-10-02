@@ -150,7 +150,7 @@ export default _.ui({
                 const {type,name,label,value} = e;
                 if(value){
                   if (name == "dni_infractor") {
-                    o.push({type:'x', name:'offenders',label: 'Infractores', value});
+                    o.push({type:'X', name:'offenders',label: 'Infractores', value});
                   } else {
                     o.push({type, name, label, value});
                   }
@@ -159,7 +159,7 @@ export default _.ui({
               e[4] = o;
             }
           });
-          me.o.ext.details = d;
+          me.o.ext.details = d.filter(item=>item[4]&&item[4].length);
           me.k++;
         });
       }
