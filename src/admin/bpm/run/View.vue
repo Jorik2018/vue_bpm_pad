@@ -28,7 +28,7 @@
                   {{ row[1].color }}
                 </div>
               </template>
-              <div v-if="row[4]" class="details">
+              <div v-if="row[4]&&row[4].length" class="details">
                 <div v-for="(item, i) in row[4]" v-bind:key="i">
                   <label>{{ item.label }}</label>
                   <div v-if="item.type == 'F'">
@@ -57,7 +57,6 @@
 
             <td header="Dependencia">
               {{ row[3] }}
-              <div class="bold">{{ row[5] }}</div>
             </td>
             <td class="center" header="Atención" width="80">
               <template v-if="row[0]">
@@ -159,7 +158,7 @@ export default _.ui({
               e[4] = o;
             }
           });
-          me.o.ext.details = d.filter(item=>item[4]&&item[4].length);
+          me.o.ext.details = d;
           me.k++;
         });
       }
