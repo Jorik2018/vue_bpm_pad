@@ -81,7 +81,7 @@
             {{ row.caso_infractor }}
             <template v-if="row.offenders&&row.offenders.length">
               <ul>
-                <li v-for="o in row.offenders">{{o.fullName}}</li>
+                <li v-for="(o,i) in row.offenders" :key="i">{{o.fullName}}</li>
               </ul>
             </template>
             
