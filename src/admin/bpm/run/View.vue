@@ -142,23 +142,15 @@ export default _.ui({
       if (Number(id)) {
         me.filters.masterId = me.id;
         axios.get("/api/bpm/details/" + id).then(response => {
-          var d = response.data;
+          const d = response.data;
           d.forEach((e) => {
             if (e[4]) {
-              var o = [];
-              var people = [];
+              const o = [];
+              const people = [];
               e[4].forEach((e) => {
-                console.log(e);
-                var [key, value] = e.split("=");
-                var [type,name,label] = key.split(".");
+                const {type,name,label,value} = e;
                 if (name == "dni_infractor") {
-                  people.push({ code: value });
-                } else if (
-                  name == "domicilio_infractor" ||
-                  name == "caso_infractor" ||
-                  name == "caso_infractor_position"
-                ) {
-                  people[(people.length)-1][name]=value;
+                  people=value;
                 } else {
                   o.push({type, name, label, value});
                 }
