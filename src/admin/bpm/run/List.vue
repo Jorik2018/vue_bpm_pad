@@ -79,7 +79,12 @@
               <input v-model="filters.offender" />
             </v-filter>
             {{ row.caso_infractor }}
-            {{ row.offenders }}
+            <template v-if="row.offenders&&row.offenders.length">
+              <ul>
+                <li v-for="o in row.offenders">{{o.fullName}}</li>
+              </ul>
+            </template>
+            
             <br />
             <p style="text-transform: uppercase">
               {{ row.caso_infractor_position }}
