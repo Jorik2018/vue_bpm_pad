@@ -84,14 +84,12 @@
                     >
                       <tr :key="k" :title="people.canceled">
                         <td class="center">{{ people.code }}</td>
-                        <td>
-                          {{ people.fullName}} {{  people.canceled}}
-                        </td>
+                        <td>{{ people.fullName}}</td>
                         <td>
                           {{people.position}}
                           <div
                             style="float: right; margin: 5px; display: inline"
-                            @click="people.canceled = 1">
+                            @click="people.canceled = true">
                             <i class="fa fa-times"></i>
                           </div>
                         </td>
