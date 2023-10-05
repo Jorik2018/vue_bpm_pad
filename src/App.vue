@@ -132,23 +132,25 @@ export default window.ui({
       o.company = o.institucion;
       var offender = [];
       var position = [];
-      if (o.ext.details) {
-        o.ext.details[0][4].forEach((e) => {
-          if (e.name == "offenders")
-            e.value.forEach((e, i) => {
-              offender.push(i + 1 + ". " + e.caso_infractor+" "+e.caso_infractor_position);
-              position.push(e.caso_infractor_position);
-            });
-        });
-      } else
+      console.log(o);
+
+      if (typeof o.ext === "string") {
+        // Split the string using "|" as the delimiter
         o.ext.split("|").forEach((e) => {
           var ss = e.split("=");
           if (ss[0].endsWith("caso_infractor")) {
             offender.push(offender.length + 1 + ". " + ss[1]);
           }
         });
+      } else if (o.ext.offenders) {
+        o.ext.offenders.forEach((e, i) => {
+          offender.push(i + 1 + ". " + e.fullName);
+          position.push(i + 1 + ". " + e.position);
+        });
+      }
+
       if (offender.length) o.offender = offender.join("\n");
-      if (position.length) o.caso_infractor_position = position.join(", ");
+      if (position.length) o.caso_infractor_position = position.join("\n");
       fo.append(
         "file",
         new Blob([JSON.stringify([o])], { type: "text/plain" }),

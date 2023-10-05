@@ -79,17 +79,20 @@
               <input v-model="filters.offender" />
             </v-filter>
             {{ row.caso_infractor }}
-            <template v-if="row.offenders&&row.offenders.length">
+            <template v-if="row.offenders && row.offenders.length">
               <ul>
-                <li v-for="(o,i) in row.offenders" :key="i">{{o.fullName}}</li>
+                <li v-for="(o, i) in row.offenders" :key="i">
+                  {{ o.fullName }} <br />
+                  {{ o.position }}
+                </li>
               </ul>
             </template>
-            
             <br />
             <p style="text-transform: uppercase">
               {{ row.caso_infractor_position }}
             </p>
           </td>
+
           <td width="40" class="center" header="">
             <div
               :key="index + '_' + k"
@@ -183,12 +186,12 @@ export default _.ui({
     tableLoaded(e) {
       e.target.data.forEach((e) => {
         if (e.activity) this.app.tt(e.activity);
-        if (e.ext){
+        if (e.ext) {
           Object.keys(e.ext).forEach((key) => {
-            e[key]=e.ext[key];
+            e[key] = e.ext[key];
           });
-          if(e.ext.all){
-            const w=e.ext.all;
+          if (e.ext.all) {
+            const w = e.ext.all;
             w.split("|,").forEach((e2) => {
               e2 = e2.split("=");
               if (e[e2[0]]) {
